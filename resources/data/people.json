@@ -1,0 +1,97 @@
+{
+  "people": [
+    {
+      "name": "Piotr",
+      "surname": "Kowalski",
+      "age": 30,
+      "profession": [
+        "it",
+        "pm"
+      ],
+      "sex": "Male"
+    },
+    {
+      "name": "Igor",
+      "surname": "Iksiński",
+      "age": 21,
+      "profession": "It",
+      "sex": "male"
+    },
+    {
+      "name": "Tomasz",
+      "surname": "Pielak",
+      "age": 34,
+      "profession": "pm",
+      "sex": "male"
+    },
+    {
+      "name": "Maurycy",
+      "surname": "Nowak",
+      "age": 44,
+      "profession": "PM",
+      "sex": "male"
+    },
+    {
+      "name": "Paweł",
+      "surname": "Kowalski",
+      "age": 42,
+      "profession": "IT",
+      "sex": "male"
+    },
+    {
+      "name": "Joanna",
+      "surname": "Kowalski",
+      "age": 31,
+      "profession": [
+        "Marketing",
+        "seller"
+      ],
+      "sex": "female"
+    },
+    {
+      "name": "Marta",
+      "surname": "Wojciechowska",
+      "age": 21,
+      "profession": "marketing",
+      "sex": "female"
+    },
+    {
+      "name": "Natalia",
+      "surname": "Mazurek",
+      "age": 32,
+      "profession": "pm",
+      "sex": "female"
+    },
+    {
+      "name": "Marianna",
+      "surname": "Nowak",
+      "age": 44,
+      "profession": "seller",
+      "sex": "female"
+    },
+    {
+      "name": "Zuzanna",
+      "surname": "Kowalska",
+      "age": 28,
+      "profession": [
+        "marketing",
+        "seller"
+      ],
+      "sex": "female"
+    },
+    {
+      "name": "John",
+      "surname": "Doe",
+      "age": null,
+      "profession": null,
+      "sex": "male"
+    },
+    {
+      "name": "Jane",
+      "surname": "Doe",
+      "age": null,
+      "profession": null,
+      "sex": "female"
+    }
+  ]
+}
