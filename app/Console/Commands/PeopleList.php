@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Src\People\Application\Query\PeopleByGivenSex;
+use Src\People\Application\Query\PeopleByGivenSexQuery;
 use Src\People\Application\Query\PeopleGetAllWithIsOldQuery;
 
 class PeopleList extends Command
@@ -35,7 +35,7 @@ class PeopleList extends Command
         }
 
         if($this->option('sex')) {
-            dd((App::make(PeopleByGivenSex::class))
+            dd((App::make(PeopleByGivenSexQuery::class))
                 ->execute($this->option('sex')));
         }
     }

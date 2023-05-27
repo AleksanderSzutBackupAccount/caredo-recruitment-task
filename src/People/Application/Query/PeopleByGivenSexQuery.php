@@ -5,7 +5,7 @@ namespace Src\People\Application\Query;
 use Src\People\Domain\Entity\People;
 use Src\People\Domain\Repository\PeopleRepository;
 
-readonly class PeopleByGivenSex
+readonly class PeopleByGivenSexQuery
 {
     public function __construct(
         public PeopleRepository $repository
