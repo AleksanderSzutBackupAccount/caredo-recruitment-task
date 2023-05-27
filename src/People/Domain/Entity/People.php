@@ -31,7 +31,12 @@ final readonly class People
         ];
     }
 
-    public function isSex(string $sex) {
+    public function isSex(string $sex): bool
+    {
         return strtolower($sex) === strtolower($this->sex);
+    }
+    public function inDepartment(string $department): bool
+    {
+        return in_array(strtolower($department), array_map('strtolower', $this->profession));
     }
 }
