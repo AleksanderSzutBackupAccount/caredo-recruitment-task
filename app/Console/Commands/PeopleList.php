@@ -11,14 +11,15 @@ class PeopleList extends Command
      *
      * @var string
      */
-    protected $signature = 'app:people-list';
+    protected $signature = 'app:people-list {--is-old} {--sex}';
+
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'List people';
 
     /**
      * Execute the console command.
