@@ -3,9 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Src\People\Domain\Repository\PeopleRepository;
+use Src\People\Infrastructure\Persistence\Repository\PeopleJsonRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public array $bindings = [
+        PeopleRepository::class => PeopleJsonRepository::class,
+    ];
     /**
      * Register any application services.
      */

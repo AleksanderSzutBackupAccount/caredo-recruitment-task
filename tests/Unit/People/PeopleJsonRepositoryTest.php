@@ -9,6 +9,9 @@ class PeopleJsonRepositoryTest extends TestCase
 {
     public function test() {
         $repository = new PeopleJsonRepository();
-        $repository->getAll();
+
+        $peoples = $repository->getAll();
+
+        $this->assertEquals(12, $peoples->count());
     }
 }

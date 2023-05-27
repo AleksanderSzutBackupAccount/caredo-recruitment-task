@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Src\People\Application\Query\PeopleGetAllWithIsOldQuery;
 
 class PeopleList extends Command
 {
@@ -21,11 +22,22 @@ class PeopleList extends Command
      */
     protected $description = 'List people';
 
+
+    public function __construct(private PeopleGetAllWithIsOldQuery $queryIsOld)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        //
+        if($this->option('is-old')) {
+            dd($this->queryIsOld->execute());
+        }
+        if($this->option('is-old')) {
+            dd($this->queryIsOld->execute());
+        }
     }
 }
