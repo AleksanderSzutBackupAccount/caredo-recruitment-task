@@ -30,4 +30,8 @@ final readonly class People
             'sex' => $this->sex
         ];
     }
+
+    public function isSex(string $sex) {
+        return strtolower($sex) === strtolower($this->sex);
+    }
 }
