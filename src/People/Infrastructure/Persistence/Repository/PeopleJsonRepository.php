@@ -2,8 +2,6 @@
 
 namespace Src\People\Infrastructure\Persistence\Repository;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Src\People\Domain\DTO\Peoples;
 use Src\People\Domain\Entity\People;
 use Src\People\Domain\Hydration\ProfessionHydration;
@@ -11,17 +9,14 @@ use Src\People\Domain\Repository\PeopleRepository;
 
 class PeopleJsonRepository implements PeopleRepository
 {
-    private const DATA_SRC = __DIR__.'/../Data/People.json';
+    private const FILE_PATH = __DIR__.'/../Data/People.json';
     public function getAll(): Peoples
     {
-        $json = file_get_contents(self::DATA_SRC);
-
-        $array = json_decode($json, true);
-
-        $peoplesJson = $array['people'];
+        $peoplesJson = $this->readJson();
 
         $peoples = [];
 
+        //todo: add People hydration from array
         foreach($peoplesJson as $peopleJson) {
             $peoples[] = new People(
                 $peopleJson['name'],
@@ -33,5 +28,14 @@ class PeopleJsonRepository implements PeopleRepository
         }
 
         return new Peoples($peoples);
+    }
+
+    public function readJson(): array
+    {
+        $json = file_get_contents(self::FILE_PATH);
+
+        $array = json_decode($json, true);
+
+        return $array['people'];
     }
 }
