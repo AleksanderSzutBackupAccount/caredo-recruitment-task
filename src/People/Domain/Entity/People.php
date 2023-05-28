@@ -3,6 +3,7 @@
 namespace Src\People\Domain\Entity;
 
 use Src\People\Domain\ValueObject\PeopleProfession;
+use Src\Shared\Domain\DepartmentType;
 
 final readonly class People
 {
@@ -39,7 +40,6 @@ final readonly class People
     }
     public function inDepartment(string $department): bool
     {
-        return in_array(strtolower($department), array_map('strtolower',
-            $this->profession->items));
+        return $this->profession->inDepartment(DepartmentType::fromName($department));
     }
 }
