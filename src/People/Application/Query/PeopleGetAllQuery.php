@@ -6,6 +6,7 @@ use Src\People\Domain\Entity\People;
 use Src\People\Domain\Repository\PeopleRepository;
 use Src\Shared\Domain\Criteria\Filters;
 use Src\Shared\Domain\Query;
+use Src\Shared\Domain\Transform;
 
 final class PeopleGetAllQuery implements Query
 {
@@ -14,7 +15,7 @@ final class PeopleGetAllQuery implements Query
     )
     {
     }
-    public function execute(Filters $filters): array
+    public function execute(Filters $filters, Transform $transform): array
     {
         $response = [];
 
@@ -23,7 +24,8 @@ final class PeopleGetAllQuery implements Query
             if (!$filters->filter($person)) {
                 continue;
             }
-            $response[] = $person->toArray();
+
+            $response[] = $transform->toResponse($person);
         }
 
         return $response;

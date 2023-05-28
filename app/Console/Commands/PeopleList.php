@@ -11,6 +11,7 @@ use Src\People\Application\Query\PeopleByDepartment;
 use Src\People\Application\Query\PeopleByGivenSexQuery;
 use Src\People\Application\Query\PeopleGetAllQuery;
 use Src\People\Application\Query\PeopleGetAllWithIsOldQuery;
+use Src\People\Application\Transform\TransformPeople;
 use Src\Shared\Domain\Criteria\Filters;
 use Src\Shared\Domain\DepartmentType;
 
@@ -39,8 +40,10 @@ class PeopleList extends Command
     {
         /** @var PeopleGetAllQuery $peopleGetAllQuery */
         $peopleGetAllQuery = App::make(PeopleGetAllQuery::class);
+
         $result = $peopleGetAllQuery->execute(
-            $this->getFilters()
+            $this->getFilters(),
+            new TransformPeople($this->option('is-old') ?? false)
         );
 
         dd($result);
