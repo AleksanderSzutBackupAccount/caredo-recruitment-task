@@ -2,6 +2,8 @@
 
 namespace Src\Department\Domain;
 
+use Src\Shared\Domain\DepartmentType;
+
 readonly class Department
 {
     public function __construct(

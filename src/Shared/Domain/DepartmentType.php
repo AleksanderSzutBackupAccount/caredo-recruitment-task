@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Department\Domain;
+namespace Src\Shared\Domain;
 
 enum DepartmentType: string
 {
