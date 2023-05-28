@@ -22,7 +22,7 @@ readonly class PeopleByDepartment
             if(!$person->inDepartment($department)) {
                 continue;
             }
-            $response[] = $person;
+            $response[] = $person->toArray();
         }
 
         return $response;

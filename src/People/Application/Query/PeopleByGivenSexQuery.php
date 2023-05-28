@@ -22,7 +22,7 @@ readonly class PeopleByGivenSexQuery
             if(!$person->isSex($sex)) {
                 continue;
             }
-            $response[] = $person;
+            $response[] = $person->toArray();
         }
 
         return $response;

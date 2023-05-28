@@ -28,7 +28,7 @@ final readonly class People
             'name' => $this->name,
             'surName' => $this->surName,
             'age' => $this->age,
-            'profession' => $this->profession,
+            'profession' => $this->profession->toArray(),
             'sex' => $this->sex
         ];
     }

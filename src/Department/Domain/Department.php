@@ -17,4 +17,8 @@ readonly class Department
             DepartmentType::fromName($department)
         );
     }
+    public function toString(): string
+    {
+        return $this->type->value;
+    }
 }

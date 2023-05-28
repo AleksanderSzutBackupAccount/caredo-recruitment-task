@@ -11,4 +11,14 @@ class PeopleProfession extends \Src\Shared\Domain\Collection
     {
         return Department::class;
     }
+    
+    public function toArray(): array {
+        $result = [];
+        /** @var Department $item */
+        foreach ($this->items as $item) {
+            $result[] = $item->toString();
+        }
+        
+        return $result;
+    }
 }
