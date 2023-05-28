@@ -7,26 +7,20 @@
 ## Usage
 
 ### Run tests
-<code> 
+
+```
 ./vendor/bin/phpunit
-</code>
+```
 
 ### Run command
-<code> 
+
+```
 php artisan app:people-list
-</code>
+```
 
 #### Additional options
 
-<code>
---department=
-</code>
-<code>
---sex=
-</code>
-<code>
---is-old
-</code>
 
+`--department=` `--sex=` `--is-old`
 
 ## Thanks for reading this
