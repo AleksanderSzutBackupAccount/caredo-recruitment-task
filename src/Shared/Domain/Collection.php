@@ -6,7 +6,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 
-abstract readonly class Collection implements Countable, IteratorAggregate
+abstract class Collection implements Countable, IteratorAggregate
 {
     public function __construct(public array $items)
     {

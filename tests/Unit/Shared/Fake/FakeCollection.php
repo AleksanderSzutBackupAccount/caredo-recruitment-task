@@ -4,7 +4,7 @@ namespace Tests\Unit\Shared\Fake;
 
 use Src\Shared\Domain\Collection;
 
-readonly class FakeCollection extends Collection
+class FakeCollection extends Collection
 {
     protected function type(): string
     {
