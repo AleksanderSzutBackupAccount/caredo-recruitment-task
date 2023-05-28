@@ -2,6 +2,8 @@
 
 namespace Src\People\Domain\Entity;
 
+use Src\People\Domain\ValueObject\PeopleProfession;
+
 final readonly class People
 {
     public const OLD = 40;
@@ -10,7 +12,7 @@ final readonly class People
         public string $name,
         public string $surName,
         public ?int $age,
-        public ?array $profession,
+        public PeopleProfession $profession,
         public string $sex
     ) {
     }
@@ -37,6 +39,7 @@ final readonly class People
     }
     public function inDepartment(string $department): bool
     {
-        return in_array(strtolower($department), array_map('strtolower', $this->profession));
+        return in_array(strtolower($department), array_map('strtolower',
+            $this->profession->items));
     }
 }

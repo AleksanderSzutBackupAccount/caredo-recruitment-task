@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Src\People\Domain\DTO\Peoples;
 use Src\People\Domain\Entity\People;
+use Src\People\Domain\Hydration\ProfessionHydration;
 use Src\People\Domain\Repository\PeopleRepository;
 
 class PeopleJsonRepository implements PeopleRepository
@@ -22,16 +23,11 @@ class PeopleJsonRepository implements PeopleRepository
         $peoples = [];
 
         foreach($peoplesJson as $peopleJson) {
-            if(gettype($peopleJson['profession']) === 'string')
-            {
-                $peopleJson['profession'] = [$peopleJson['profession']];
-            }
-
             $peoples[] = new People(
                 $peopleJson['name'],
                 $peopleJson['surname'],
                 $peopleJson['age'],
-                $peopleJson['profession'],
+                ProfessionHydration::hydrate($peopleJson['profession']),
                 $peopleJson['sex'],
             );
         }
