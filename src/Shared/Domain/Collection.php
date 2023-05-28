@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\Shared\Domain;
 
 use ArrayIterator;
@@ -24,5 +26,4 @@ abstract class Collection implements Countable, IteratorAggregate
     {
         return count($this->items);
     }
-
 }

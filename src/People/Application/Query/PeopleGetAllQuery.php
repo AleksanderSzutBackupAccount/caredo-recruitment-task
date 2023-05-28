@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\People\Application\Query;
 
 use Src\People\Domain\Entity\People;
@@ -12,16 +14,16 @@ final class PeopleGetAllQuery implements Query
 {
     public function __construct(
         public PeopleRepository $repository
-    )
-    {
+    ) {
     }
+
     public function execute(Filters $filters, Transform $transform): array
     {
         $response = [];
 
         /** @var People $person */
         foreach ($this->repository->getAll() as $person) {
-            if (!$filters->filter($person)) {
+            if (! $filters->filter($person)) {
                 continue;
             }
 

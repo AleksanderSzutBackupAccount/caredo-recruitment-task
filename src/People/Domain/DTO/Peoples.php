@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\People\Domain\DTO;
 
 use Src\People\Domain\Entity\People;

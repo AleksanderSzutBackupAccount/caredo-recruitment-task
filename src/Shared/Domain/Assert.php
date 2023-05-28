@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\Shared\Domain;
 
-use InvalidArgumentException;
 use Src\Shared\Domain\Exception\InvalidObjectInstanceException;
 
 final class Assert
@@ -16,8 +17,8 @@ final class Assert
 
     public static function instanceOf(string $class, object $item): void
     {
-        if (!$item instanceof $class) {
-            throw new InvalidObjectInstanceException( $item, $class);
+        if (! $item instanceof $class) {
+            throw new InvalidObjectInstanceException($item, $class);
         }
     }
 }

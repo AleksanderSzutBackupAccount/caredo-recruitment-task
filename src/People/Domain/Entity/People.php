@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\People\Domain\Entity;
 
 use Src\People\Domain\ValueObject\PeopleProfession;
@@ -31,7 +33,7 @@ final readonly class People implements Entity
             'surName' => $this->surName,
             'age' => $this->age,
             'profession' => $this->profession->toArray(),
-            'sex' => $this->sex
+            'sex' => $this->sex,
         ];
     }
 
@@ -39,6 +41,7 @@ final readonly class People implements Entity
     {
         return strtolower($sex) === strtolower($this->sex);
     }
+
     public function inDepartment(DepartmentType $department): bool
     {
         return $this->profession->inDepartment($department);

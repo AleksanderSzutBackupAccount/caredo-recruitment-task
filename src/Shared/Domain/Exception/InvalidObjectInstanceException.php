@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\Shared\Domain\Exception;
 
 use InvalidArgumentException;
 
 class InvalidObjectInstanceException extends InvalidArgumentException
 {
-
     private const ERROR_MESSAGE = 'The object <%s> is not an instance of <%s>';
 
     public function __construct(object $object, string $instance)
@@ -19,5 +20,4 @@ class InvalidObjectInstanceException extends InvalidArgumentException
             )
         );
     }
-
 }

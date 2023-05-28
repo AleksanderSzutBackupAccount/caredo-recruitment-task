@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\People\Domain\Hydration;
 
 use Src\Department\Domain\Department;
@@ -7,15 +9,18 @@ use Src\People\Domain\ValueObject\PeopleProfession;
 
 class ProfessionHydration
 {
-    public static function toArray(array|string|null $data): array {
-        if(gettype($data) !== 'array')
-        {
+    public static function toArray(array|string|null $data): array
+    {
+        if ('array' !== gettype($data)) {
             return [$data];
         }
+
         return $data;
     }
-    public static function hydrate(array|string|null $data): PeopleProfession {
-        if($data === null) {
+
+    public static function hydrate(array|string|null $data): PeopleProfession
+    {
+        if (null === $data) {
             return new PeopleProfession([]);
         }
         $departments = [];
@@ -26,5 +31,4 @@ class ProfessionHydration
 
         return new PeopleProfession($departments);
     }
-
 }

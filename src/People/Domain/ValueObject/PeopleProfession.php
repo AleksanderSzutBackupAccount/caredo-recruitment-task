@@ -1,7 +1,8 @@
 <?php
 
-namespace Src\People\Domain\ValueObject;
+declare(strict_types=1);
 
+namespace Src\People\Domain\ValueObject;
 
 use Src\Department\Domain\Department;
 use Src\Shared\Domain\DepartmentType;
@@ -12,14 +13,15 @@ class PeopleProfession extends \Src\Shared\Domain\Collection
     {
         return Department::class;
     }
-    
-    public function toArray(): array {
+
+    public function toArray(): array
+    {
         $result = [];
         /** @var Department $item */
         foreach ($this->items as $item) {
             $result[] = $item->toString();
         }
-        
+
         return $result;
     }
 

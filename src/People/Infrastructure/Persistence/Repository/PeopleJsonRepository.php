@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\People\Infrastructure\Persistence\Repository;
 
 use Src\People\Domain\DTO\Peoples;
@@ -10,6 +12,7 @@ use Src\People\Domain\Repository\PeopleRepository;
 class PeopleJsonRepository implements PeopleRepository
 {
     private const FILE_PATH = __DIR__.'/../Data/People.json';
+
     public function getAll(): Peoples
     {
         $peoplesJson = $this->readJson();
@@ -17,7 +20,7 @@ class PeopleJsonRepository implements PeopleRepository
         $peoples = [];
 
         //todo: add People hydration from array
-        foreach($peoplesJson as $peopleJson) {
+        foreach ($peoplesJson as $peopleJson) {
             $peoples[] = new People(
                 $peopleJson['name'],
                 $peopleJson['surname'],

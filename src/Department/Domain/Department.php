@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Src\Department\Domain;
 
 use Src\Shared\Domain\DepartmentType;
@@ -11,12 +13,13 @@ readonly class Department
     ) {
     }
 
-    static public function create(string $department): Department
+    public static function create(string $department): Department
     {
         return new self(
             DepartmentType::fromName($department)
         );
     }
+
     public function toString(): string
     {
         return $this->type->value;

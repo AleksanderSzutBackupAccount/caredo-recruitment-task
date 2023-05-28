@@ -1,7 +1,8 @@
 <?php
 
-namespace Src\Shared\Domain\Criteria;
+declare(strict_types=1);
 
+namespace Src\Shared\Domain\Criteria;
 
 use Src\Shared\Domain\Collection;
 use Src\Shared\Domain\Entity;
@@ -17,10 +18,11 @@ final class Filters extends Collection
     {
         /** @var FilterInterface $filter */
         foreach ($this->items as $filter) {
-            if (!$filter->filter($entity)) {
+            if (! $filter->filter($entity)) {
                 return false;
             }
         }
+
         return true;
     }
 

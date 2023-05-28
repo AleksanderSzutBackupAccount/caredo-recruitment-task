@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -7,10 +9,7 @@ use Illuminate\Support\Facades\App;
 use JetBrains\PhpStorm\NoReturn;
 use Src\People\Application\Filter\FilterByDepartment;
 use Src\People\Application\Filter\FilterBySex;
-use Src\People\Application\Query\PeopleByDepartment;
-use Src\People\Application\Query\PeopleByGivenSexQuery;
 use Src\People\Application\Query\PeopleGetAllQuery;
-use Src\People\Application\Query\PeopleGetAllWithIsOldQuery;
 use Src\People\Application\Transform\TransformPeople;
 use Src\Shared\Domain\Criteria\Filters;
 use Src\Shared\Domain\DepartmentType;
@@ -24,7 +23,6 @@ class PeopleList extends Command
      */
     protected $signature = 'app:people-list {--is-old} {--sex=} {--department=}';
 
-
     /**
      * The console command description.
      *
@@ -32,11 +30,11 @@ class PeopleList extends Command
      */
     protected $description = 'List people';
 
-
     /**
      * Execute the console command.
      */
-    #[NoReturn] public function handle(): void
+    #[NoReturn]
+    public function handle(): void
     {
         /** @var PeopleGetAllQuery $peopleGetAllQuery */
         $peopleGetAllQuery = App::make(PeopleGetAllQuery::class);
@@ -49,21 +47,22 @@ class PeopleList extends Command
         dd($result);
     }
 
-    private function getFilters(): Filters {
-        $filtersArray = [];
+       private function getFilters(): Filters
+       {
+           $filtersArray = [];
 
-        if($this->option('sex')) {
-            $filtersArray[] = new FilterBySex($this->option('sex'));
-        }
+           if ($this->option('sex')) {
+               $filtersArray[] = new FilterBySex($this->option('sex'));
+           }
 
-        if($this->option('department')) {
-            $filtersArray[] = new FilterByDepartment(
-                DepartmentType::fromName(
-                    $this->option('department')
-                )
-            );
-        }
+           if ($this->option('department')) {
+               $filtersArray[] = new FilterByDepartment(
+                   DepartmentType::fromName(
+                       $this->option('department')
+                   )
+               );
+           }
 
-        return new Filters($filtersArray);
-    }
+           return new Filters($filtersArray);
+       }
 }
