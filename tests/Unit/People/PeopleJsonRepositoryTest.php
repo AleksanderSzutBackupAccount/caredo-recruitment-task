@@ -9,7 +9,7 @@ use Src\People\Infrastructure\Persistence\Repository\PeopleJsonRepository;
 
 class PeopleJsonRepositoryTest extends TestCase
 {
-    public function test()
+    public function test(): void
     {
         $repository = new PeopleJsonRepository;
 
