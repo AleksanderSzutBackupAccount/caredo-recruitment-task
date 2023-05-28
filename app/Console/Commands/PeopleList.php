@@ -4,9 +4,15 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use JetBrains\PhpStorm\NoReturn;
+use Src\People\Application\Filter\FilterByDepartment;
+use Src\People\Application\Filter\FilterBySex;
 use Src\People\Application\Query\PeopleByDepartment;
 use Src\People\Application\Query\PeopleByGivenSexQuery;
+use Src\People\Application\Query\PeopleGetAllQuery;
 use Src\People\Application\Query\PeopleGetAllWithIsOldQuery;
+use Src\Shared\Domain\Criteria\Filters;
+use Src\Shared\Domain\DepartmentType;
 
 class PeopleList extends Command
 {
@@ -29,21 +35,32 @@ class PeopleList extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    #[NoReturn] public function handle(): void
     {
-        if($this->option('is-old')) {
-            dd((App::make(PeopleGetAllWithIsOldQuery::class))
-                ->execute());
-        }
+        /** @var PeopleGetAllQuery $peopleGetAllQuery */
+        $peopleGetAllQuery = App::make(PeopleGetAllQuery::class);
+        $result = $peopleGetAllQuery->execute(
+            $this->getFilters()
+        );
+
+        dd($result);
+    }
+
+    private function getFilters(): Filters {
+        $filtersArray = [];
 
         if($this->option('sex')) {
-            dd((App::make(PeopleByGivenSexQuery::class))
-                ->execute($this->option('sex')));
+            $filtersArray[] = new FilterBySex($this->option('sex'));
         }
 
         if($this->option('department')) {
-            dd((App::make(PeopleByDepartment::class))
-                ->execute($this->option('department')));
+            $filtersArray[] = new FilterByDepartment(
+                DepartmentType::fromName(
+                    $this->option('department')
+                )
+            );
         }
+
+        return new Filters($filtersArray);
     }
 }

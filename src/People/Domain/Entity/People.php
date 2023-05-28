@@ -4,8 +4,9 @@ namespace Src\People\Domain\Entity;
 
 use Src\People\Domain\ValueObject\PeopleProfession;
 use Src\Shared\Domain\DepartmentType;
+use Src\Shared\Domain\Entity;
 
-final readonly class People
+final readonly class People implements Entity
 {
     public const OLD = 40;
 
@@ -38,8 +39,8 @@ final readonly class People
     {
         return strtolower($sex) === strtolower($this->sex);
     }
-    public function inDepartment(string $department): bool
+    public function inDepartment(DepartmentType $department): bool
     {
-        return $this->profession->inDepartment(DepartmentType::fromName($department));
+        return $this->profession->inDepartment($department);
     }
 }
