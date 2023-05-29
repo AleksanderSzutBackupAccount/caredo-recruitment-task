@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+    load-balancer:
+        build:
+            context: services/load-balancer
+        container_name: caredo-load-balancer
+        volumes:
+            - ../:/var/www
+        restart: unless-stopped
+        environment:
+            DOMAIN_NAME: '${DOMAIN_NAME:-localhost}'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '443:443'
+        networks:
+            - caredo-network
+        depends_on:
+            - app
+    app:
+        build:
+            context: ..
+            dockerfile: ./infrastructure/services/app/Dockerfile
+        container_name: '${CONTAINER_NAME:-app}'
+        restart: unless-stopped
+        depends_on:
+            -   db
+        volumes:
+            - ../:/var/www
+        networks:
+            - caredo-network
+    db:
+        build:
+            context: services/db
+        container_name: caredo-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - 'caredo-db-volume:/var/lib/mysql'
+            - '../vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+        networks:
+            - caredo-network
+networks:
+    caredo-network:
+        driver: bridge
+volumes:
+    caredo-db-volume:
+        driver: local

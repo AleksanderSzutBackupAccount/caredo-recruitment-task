@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/scripts/init/pass-env-var-to-nginx.sh
+

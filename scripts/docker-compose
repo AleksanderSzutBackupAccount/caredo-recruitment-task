@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker-compose \
+    -f infrastructure/docker-compose.yml \
+    $1 \
+    "${@:2}"
+

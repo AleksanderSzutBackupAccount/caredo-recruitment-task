@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. ./import-env
+
+if [ ! "$(docker ps -q -f name=${CONTAINER_NAME})" ];
+then
+    echo "Container is not run  $CONTAINER_NAME"
+    exit 0
+fi
+
+docker-compose \
+    -f infrastructure/docker-compose.yml \
+    run ${CONTAINER_NAME} \
+    $1 \
+    "${@:2}"
+

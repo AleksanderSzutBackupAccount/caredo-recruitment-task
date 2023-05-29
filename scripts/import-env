@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source .env
+set -a
+: ${CONTAINER_NAME:=app}
+set +a
+
