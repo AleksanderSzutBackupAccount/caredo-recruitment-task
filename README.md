@@ -6,6 +6,12 @@
 
 ## Usage
 
+## Setup
+add .env file and next execute:
+``` 
+make up
+```
+
 ### Run tests
 
 ```
